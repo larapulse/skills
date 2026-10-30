@@ -1,0 +1,8 @@
+{
+  "name": "larapulse",
+  "description": "Personal global rules and code review agents, shared across devices and accounts.",
+  "author": {
+    "name": "larapulse"
+  },
+  "repository": "https://github.com/larapulse/skills"
+}

@@ -1,0 +1,14 @@
+{
+  "name": "larapulse-skills",
+  "description": "Personal Claude Code plugins of larapulse.",
+  "owner": {
+    "name": "larapulse"
+  },
+  "plugins": [
+    {
+      "name": "larapulse",
+      "source": "./",
+      "description": "Personal global rules and code review agents, shared across devices and accounts."
+    }
+  ]
+}
