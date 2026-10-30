@@ -41,10 +41,11 @@ Skills load on their own when the task fits; each costs a one-line description i
 |---|---|
 | [`/larapulse:handoff [purpose]`](skills/handoff/SKILL.md) | Writes a brief of the current work for another agent, by default an independent reviewer. After review feedback, writes a follow-up covering only the new changes. |
 | [`/larapulse:review-handoff <brief or path>`](skills/review-handoff/SKILL.md) | Reviews the changes a brief describes in every repository it lists and gives a merge verdict. Fixes minor non-logic issues itself, lists logic findings for the developer. |
+| [`/larapulse:wait-what`](skills/wait-what/SKILL.md) | Re-pitches the last message with the missing context, in full sentences of plain English, when a terse report didn't land. |
 
 A review round: run `/larapulse:handoff` where the code was written, paste the brief into the reviewer (another agent, such as Codex, on any machine) with `/larapulse:review-handoff`, and forward its report back. After fixing, `/larapulse:handoff` again writes the follow-up for the next round.
 
-The short forms `/handoff` and `/review-handoff` work too while no other command uses those names. Commands only run when typed, so their descriptions cost no context.
+The short forms `/handoff`, `/review-handoff` and `/wait-what` work too while no other command uses those names. Commands only run when typed, so their descriptions cost no context.
 
 ## Side effects
 
