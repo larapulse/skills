@@ -12,6 +12,7 @@ The repo root is both the plugin (`larapulse`) and its marketplace (`larapulse-s
 
 - `global-rules.md`: the user's global instructions; `hooks/hooks.json` injects it at session start.
 - `agents/`: subagents.
+- `skills/`: user-invoked commands (`disable-model-invocation: true`).
 
 ## Conventions
 

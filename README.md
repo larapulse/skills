@@ -1,6 +1,6 @@
 # larapulse/skills
 
-Personal agent plugin: global coding instructions and code review agents, shared across devices and accounts. Built to sit next to [superpowers](https://github.com/obra/superpowers), not to replace it.
+Personal agent plugin: global coding instructions, code review agents and review handoff commands, shared across devices and accounts. Built to sit next to [superpowers](https://github.com/obra/superpowers), not to replace it.
 
 ## Contents
 
@@ -17,9 +17,16 @@ Personal agent plugin: global coding instructions and code review agents, shared
 
 Claude dispatches them on its own at those points, or ask by name ("run code-simplifier").
 
-### Skills and commands
+### Commands
 
-None yet.
+| Command | Does |
+|---|---|
+| [`/larapulse:handoff [purpose]`](skills/handoff/SKILL.md) | Writes a brief of the current work for another agent, by default an independent reviewer. After review feedback, writes a follow-up covering only the new changes. |
+| [`/larapulse:review-handoff <brief or path>`](skills/review-handoff/SKILL.md) | Reviews the changes a brief describes in every repository it lists and gives a merge verdict. Fixes minor non-logic issues itself, lists logic findings for the developer. |
+
+A review round: run `/larapulse:handoff` where the code was written, paste the brief into the reviewer (another agent, such as Codex, on any machine) with `/larapulse:review-handoff`, and forward its report back. After fixing, `/larapulse:handoff` again writes the follow-up for the next round.
+
+The short forms `/handoff` and `/review-handoff` work too while no other command uses those names. Commands only run when typed, so their descriptions cost no context.
 
 ## Side effects
 
@@ -27,6 +34,8 @@ None yet.
 - **Duplicates**: instructions still present in `~/.claude/CLAUDE.md` (or `~/.codex/AGENTS.md`) load twice. Remove them there.
 - **Branches**: on `master`/`main`, Claude creates a feature branch before changing code, unless the project's CLAUDE.md or an explicit instruction says otherwise.
 - **Agents**: each run is a subagent with its own context and token cost. `code-simplifier` edits files and runs the project's tests; `silent-failure-hunter` only reads.
+- **Handoff files**: briefs and reports longer than about 40 lines go to `.handoff/` in the repository root, which is added to `.git/info/exclude` so it is never committed. Shorter ones are printed in chat.
+- **Review fixes**: `/larapulse:review-handoff` fixes minor non-logic issues (typos, stale comments) directly in the reviewer's checkout.
 - **Updates**: with auto-update on, every push to `master` reaches every device. There are no version bumps.
 
 ## Install
@@ -72,7 +81,7 @@ codex plugin add larapulse@larapulse-skills
 
 Then trust the hook in `/hooks`. Codex asks again after every update. Codex updates plugins at startup.
 
-Agents are not available: Codex agents use a TOML format, and plugins cannot ship them.
+The commands come with the plugin as Codex skills. Agents are not available: Codex agents use a TOML format, and plugins cannot ship them.
 
 ### OpenCode
 
@@ -84,7 +93,17 @@ OpenCode doesn't read Claude Code plugins. Point its instructions at the file in
 }
 ```
 
-Agents are not available: OpenCode uses a different agent format.
+For the commands, link the skill folders where OpenCode looks for skills (a local clone is needed):
+
+```bash
+git clone https://github.com/larapulse/skills ~/.larapulse-skills
+```
+
+```bash
+mkdir -p ~/.config/opencode/skills && ln -s ~/.larapulse-skills/skills/* ~/.config/opencode/skills/
+```
+
+Update with `git -C ~/.larapulse-skills pull`. Agents are not available: OpenCode uses a different agent format.
 
 ### Other tools
 
