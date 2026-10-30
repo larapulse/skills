@@ -1,6 +1,6 @@
 {
   "name": "larapulse",
-  "description": "Personal global rules, code review agents and review workflow skills, shared across devices and accounts.",
+  "description": "Personal global rules, a secrets guard, code review agents and review workflow skills, shared across devices and accounts.",
   "author": {
     "name": "larapulse"
   },

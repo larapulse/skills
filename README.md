@@ -1,12 +1,22 @@
 # larapulse/skills
 
-Personal agent plugin: global coding instructions, code review agents and review workflow skills, shared across devices and accounts. Built to sit next to [superpowers](https://github.com/obra/superpowers), not to replace it.
+Personal agent plugin: global coding instructions, a secrets guard, code review agents and review workflow skills, shared across devices and accounts. Built to sit next to [superpowers](https://github.com/obra/superpowers), not to replace it.
 
 ## Contents
 
 ### Global instructions
 
 [`global-rules.md`](global-rules.md): the instructions that would otherwise live in `~/.claude/CLAUDE.md`. They cover reporting style, git branches and commits, migrations, dependencies, comments and code review. Loaded at the start of every session, and again after `/clear` and compaction.
+
+### Secrets guard
+
+[`hooks/protect-secrets.py`](hooks/protect-secrets.py) runs before every Read, Grep and Bash call, subagents included, and denies:
+
+- **Reading secrets**: `.env` and `.env.*` (`.env.local` and `.env.example`, `.sample`, `.dist`, `.template` stay readable), private keys (`id_*`, `*.pem`, `*.key`, `*.p12`, `*.pfx`), Composer `auth.json`, and credential stores in the home directory: `~/.ssh` (except `config`, `known_hosts`, `*.pub`), `~/.gnupg`, `~/.aws`, `~/.azure`, `~/.config/gcloud`, `~/.kube`, Docker, Git and npm credentials, `~/.netrc`, `~/.pypirc`, `gh` and `glab` configs, and the Claude and Codex auth files.
+- **Remote shells and transfers**: `ssh`, `scp`, `sftp`, `rsync`, `sshpass`, `mosh`, `autossh`, also behind `sudo`, `timeout` or `env` and inside `bash -c`, `eval` or `$(…)`.
+- **Uploads**: `curl` and `wget` sending data (`-d`, `--data*`, `--json`, `-F`, `-T`, `--post-*`, `--body-*`, or a method other than GET or HEAD). Downloads stay allowed.
+
+Claude gets the reason and asks you instead. It is a guardrail, not a sandbox: indirect reads such as `printenv` or scripts that load `.env` themselves are not caught.
 
 ### Agents
 
@@ -44,6 +54,7 @@ The short forms `/handoff` and `/review-handoff` work too while no other command
 - **Agents**: each run is a subagent with its own context and token cost. `code-simplifier` edits files and runs the project's tests; `silent-failure-hunter` only reads.
 - **Handoff files**: briefs and reports longer than about 40 lines go to `.handoff/` in the repository root, which is added to `.git/info/exclude` so it is never committed. Shorter ones are printed in chat.
 - **Review fixes**: `/larapulse:review-handoff` fixes minor non-logic issues (typos, stale comments) directly in the reviewer's checkout.
+- **Secrets guard**: about 30 ms per Read, Grep and Bash call, and no tokens unless it blocks. It needs `python3`: without it, every Read, Grep and Bash call is blocked until it is installed. `cp .env.example .env` is blocked as well; run it yourself.
 - **Updates**: with auto-update on, every push to `master` reaches every device. There are no version bumps.
 
 ## Install
@@ -87,7 +98,7 @@ codex plugin marketplace add larapulse/skills
 codex plugin add larapulse@larapulse-skills
 ```
 
-Then trust the hook in `/hooks`. Codex asks again after every update. Codex updates plugins at startup.
+Then trust the hooks in `/hooks`. Codex asks again after every update. Whether Codex runs the secrets guard is not verified. Codex updates plugins at startup.
 
 The commands come with the plugin as Codex skills. Agents are not available: Codex agents use a TOML format, and plugins cannot ship them.
 

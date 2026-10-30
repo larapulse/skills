@@ -10,6 +10,17 @@
           }
         ]
       }
+    ],
+    "PreToolUse": [
+      {
+        "matcher": "Read|Grep|Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python3 \"${CLAUDE_PLUGIN_ROOT}/hooks/protect-secrets.py\" || { echo 'larapulse secrets guard could not run (is python3 installed?)' >&2; exit 2; }"
+          }
+        ]
+      }
     ]
   }
 }
