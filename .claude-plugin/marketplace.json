@@ -8,7 +8,7 @@
     {
       "name": "larapulse",
       "source": "./",
-      "description": "Personal global rules, code review agents and review handoff commands, shared across devices and accounts."
+      "description": "Personal global rules, code review agents and review workflow skills, shared across devices and accounts."
     }
   ]
 }

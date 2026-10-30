@@ -1,6 +1,6 @@
 # larapulse/skills
 
-Personal agent plugin: global coding instructions, code review agents and review handoff commands, shared across devices and accounts. Built to sit next to [superpowers](https://github.com/obra/superpowers), not to replace it.
+Personal agent plugin: global coding instructions, code review agents and review workflow skills, shared across devices and accounts. Built to sit next to [superpowers](https://github.com/obra/superpowers), not to replace it.
 
 ## Contents
 
@@ -12,10 +12,18 @@ Personal agent plugin: global coding instructions, code review agents and review
 
 | Agent | Runs | Does | Edits code |
 |---|---|---|---|
-| [`larapulse:code-simplifier`](agents/code-simplifier.md) | Before code review or a PR, or when asked | Simplifies the branch's changes without changing behaviour; runs the tests before and after | Yes |
+| [`larapulse:code-simplifier`](agents/code-simplifier.md) | Before code review or a merge request, or when asked | Simplifies the branch's changes without changing behaviour; runs the tests before and after | Yes |
 | [`larapulse:silent-failure-hunter`](agents/silent-failure-hunter.md) | During code review, or when asked | Reports swallowed errors, unjustified fallbacks and unhelpful error messages | No |
 
 Claude dispatches them on its own at those points, or ask by name ("run code-simplifier").
+
+### Skills
+
+| Skill | Used when | Does |
+|---|---|---|
+| [`larapulse:mr`](skills/mr/SKILL.md) | Claude writes a merge request description | Keeps it to one or two sentences plus only what the diff doesn't make obvious: env variable names, breaking changes, related merge requests in other repositories. Follows the project's template when there is one. |
+
+Skills load on their own when the task fits; each costs a one-line description in context.
 
 ### Commands
 
