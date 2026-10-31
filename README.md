@@ -131,7 +131,32 @@ Gemini CLI, Cursor and GitHub Copilot CLI are not set up. Each has its own manif
 
 ## Recommended companion plugins
 
-Installed on their own from Anthropic's official marketplace, not part of this plugin.
+Installed on their own from Anthropic's official marketplace, not part of this plugin. That marketplace is known to Claude Code by default and its plugins update automatically.
+
+| Plugin | Why |
+|---|---|
+| [superpowers](https://github.com/obra/superpowers) | The development workflow this plugin builds on: brainstorming, plans, test-driven development, systematic debugging, subagent-driven work and code review. |
+| [frontend-design](https://github.com/anthropics/claude-plugins-official/tree/main/plugins/frontend-design) | Deliberate visual design for new UI instead of templated defaults, with an accessibility floor and copywriting rules. The global instructions limit its push for a distinctive look to new standalone surfaces; inside an existing app, its design system wins. |
+| [security-guidance](https://github.com/anthropics/claude-plugins-official/tree/main/plugins/security-guidance) | Catches vulnerable code as Claude writes it. Setup, modes and costs below. |
+
+Add them to `~/.claude/settings.json`, next to this plugin:
+
+```json
+{
+  "enabledPlugins": {
+    "superpowers@claude-plugins-official": true,
+    "frontend-design@claude-plugins-official": true,
+    "security-guidance@claude-plugins-official": true
+  }
+}
+```
+
+Or from a session: `/plugin install <name>@claude-plugins-official` for each.
+
+Avoid these alongside this plugin:
+
+- `code-simplifier` and `pr-review-toolkit`: they ship the originals of this plugin's adapted agents, so each agent would exist twice, the original still set to run after every change.
+- `code-review`: replaced by Claude Code's built-in `/code-review`, and the two clash on the command name.
 
 ### security-guidance
 
