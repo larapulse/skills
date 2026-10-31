@@ -12,6 +12,7 @@ The repo root is both the plugin (`larapulse`) and its marketplace (`larapulse-s
 
 - `global-rules.md`: the user's global instructions; `hooks/hooks.json` injects it at session start.
 - `hooks/protect-secrets.py`: PreToolUse guard against reading secrets, remote shells and uploads. Test every pattern change with sample tool calls.
+- `RECOMMENDED.md`: companion plugins and skills, installed separately.
 - `agents/`: subagents.
 - `skills/`: skills; commands (user-invoked only) set `disable-model-invocation: true`.
 
