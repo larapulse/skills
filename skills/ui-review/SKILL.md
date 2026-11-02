@@ -174,7 +174,7 @@ Group by file. Use `file:line` format (VS Code clickable). Terse findings.
 src/Button.tsx:42 - icon button missing aria-label
 src/Button.tsx:18 - input lacks label
 src/Button.tsx:55 - animation missing prefers-reduced-motion
-src/Button.tsx:67 - transition: all → list properties
+src/Button.tsx:67 - transition: all -> list properties
 
 ## src/Modal.tsx
 
@@ -183,7 +183,7 @@ src/Modal.tsx:34 - destructive action fires without confirmation
 
 ## src/Card.tsx
 
-✓ pass
+pass
 ```
 
 State issue + location. Skip explanation unless fix non-obvious. No preamble.

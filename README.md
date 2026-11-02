@@ -79,14 +79,14 @@ Add to `~/.claude/settings.json`:
 }
 ```
 
-Or from a session: `/plugin marketplace add larapulse/skills`, then `/plugin install larapulse@larapulse-skills`, then `/plugin` → Marketplaces → `larapulse-skills` → Enable auto-update. Third-party marketplaces don't auto-update by default.
+Or from a session: `/plugin marketplace add larapulse/skills`, then `/plugin install larapulse@larapulse-skills`, then `/plugin` > Marketplaces > `larapulse-skills` > Enable auto-update. Third-party marketplaces don't auto-update by default.
 
 - Update by hand: `claude plugin update larapulse@larapulse-skills`
 - Remove: `claude plugin uninstall larapulse@larapulse-skills`
 
 ### Claude Code in the cloud (claude.ai/code)
 
-Cloud sessions ignore plugin settings from devices and repositories. An organization Owner adds the same JSON in claude.ai → Organization settings → Claude Code → Managed settings. Not yet tested.
+Cloud sessions ignore plugin settings from devices and repositories. An organization Owner adds the same JSON in claude.ai > Organization settings > Claude Code > Managed settings. Not yet tested.
 
 ### Codex CLI
 
