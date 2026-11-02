@@ -35,9 +35,23 @@ Or from a session: `/plugin install <name>@claude-plugins-official` for each.
 | [playwright](https://github.com/anthropics/claude-plugins-official/tree/main/external_plugins/playwright) | plugin (MCP) | Browser testing and screenshots of local apps | Starts `npx @playwright/mcp@latest`, fetched fresh from npm. The browser reaches the network outside the sandbox and outside the secrets guard. |
 | [vercel-react-best-practices](https://github.com/vercel-labs/agent-skills/tree/main/skills/react-best-practices) | skill | React and Next.js work: 70 performance rules on request waterfalls, bundle size, server components and re-renders | Its description sits in context every session; most rules target Next.js. |
 | [vercel-composition-patterns](https://github.com/vercel-labs/agent-skills/tree/main/skills/composition-patterns) | skill | Designing reusable React component APIs (compound components, providers, no boolean-prop sprawl) | Its description sits in context every session. |
+| [humanizer](https://github.com/blader/humanizer) | plugin (skill only) | Editing or reviewing prose for AI tells: not-X-but-Y contrasts, forced triads, dashes everywhere, inflated claims, stock AI words, bold labels, filler | A third-party marketplace, so it doesn't auto-update unless you turn that on. Its description sits in context every session. |
 | [seo-audit](https://github.com/coreyhaines31/marketingskills/tree/main/skills/seo-audit) | skill | Auditing a public website's technical and on-page SEO | Its long description (about 180 tokens) sits in context every session; install it while you need it. |
 
-Plugins install like the core ones (`"<name>@claude-plugins-official": true`). Skills install with the [`skills`](https://github.com/vercel-labs/skills) CLI, globally for Claude Code:
+Plugins from Anthropic's marketplace install like the core ones (`"<name>@claude-plugins-official": true`). humanizer has its own marketplace: `/plugin marketplace add blader/humanizer`, then `/plugin install humanizer@humanizer`, or in settings:
+
+```json
+{
+  "extraKnownMarketplaces": {
+    "humanizer": { "source": { "source": "github", "repo": "blader/humanizer" } }
+  },
+  "enabledPlugins": { "humanizer@humanizer": true }
+}
+```
+
+This plugin's global instructions already ban curly quotes, the ellipsis character and dashes in everything Claude writes; humanizer goes further on prose.
+
+Skills install with the [`skills`](https://github.com/vercel-labs/skills) CLI, globally for Claude Code:
 
 ```bash
 npx skills add vercel-labs/agent-skills --skill vercel-react-best-practices -g -a claude-code
