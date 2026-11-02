@@ -13,7 +13,7 @@ Personal agent plugin: global coding instructions, a secrets guard, code review 
 [`hooks/protect-secrets.py`](hooks/protect-secrets.py) runs before every Read, Grep and Bash call, subagents included, and denies:
 
 - **Reading secrets**: `.env` and `.env.*` (`.env.local` and `.env.example`, `.sample`, `.dist`, `.template` stay readable), private keys (`id_*`, `*.pem`, `*.key`, `*.p12`, `*.pfx`), Composer `auth.json`, and credential stores in the home directory: `~/.ssh` (except `config`, `known_hosts`, `*.pub`), `~/.gnupg`, `~/.aws`, `~/.azure`, `~/.config/gcloud`, `~/.kube`, Docker, Git and npm credentials, `~/.netrc`, `~/.pypirc`, `gh` and `glab` configs, and the Claude and Codex auth files.
-- **Remote shells and transfers**: `ssh`, `scp`, `sftp`, `rsync`, `sshpass`, `mosh`, `autossh`, also behind `sudo`, `timeout` or `env` and inside `bash -c`, `eval` or `$(…)`.
+- **Remote shells and transfers**: `ssh`, `scp`, `sftp`, `rsync`, `sshpass`, `mosh`, `autossh`, also behind `sudo`, `timeout` or `env` and inside `bash -c`, `eval` or `$(...)`.
 - **Uploads**: `curl` and `wget` sending data (`-d`, `--data*`, `--json`, `-F`, `-T`, `--post-*`, `--body-*`, or a method other than GET or HEAD). Downloads stay allowed.
 
 Claude gets the reason and asks you instead. It is a guardrail, not a sandbox: indirect reads such as `printenv` or scripts that load `.env` themselves are not caught.
