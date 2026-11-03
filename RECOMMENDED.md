@@ -67,6 +67,41 @@ npx skills add coreyhaines31/marketingskills --skill seo-audit -g -a claude-code
 
 Skills installed this way don't update on their own: run `npx skills update`.
 
+## Code intelligence
+
+Language server plugins give Claude what your editor has: errors and warnings right after each of its edits (type errors, missing imports, syntax errors), and an `LSP` tool that finds definitions and references by symbol instead of by text search. They're optional; tests and builds catch the same errors, only later.
+
+| Language | Plugin | Install the server binary |
+|---|---|---|
+| Go | [`gopls-lsp`](https://github.com/anthropics/claude-plugins-official/tree/main/plugins/gopls-lsp) | `go install golang.org/x/tools/gopls@latest` |
+| Python | [`pyright-lsp`](https://github.com/anthropics/claude-plugins-official/tree/main/plugins/pyright-lsp) | `npm install -g pyright` or `pipx install pyright` |
+| PHP | [`php-lsp`](https://github.com/anthropics/claude-plugins-official/tree/main/plugins/php-lsp) | `npm install -g intelephense` |
+| JavaScript, TypeScript | [`typescript-lsp`](https://github.com/anthropics/claude-plugins-official/tree/main/plugins/typescript-lsp) | `npm install -g typescript-language-server typescript` |
+| Rust | [`rust-analyzer-lsp`](https://github.com/anthropics/claude-plugins-official/tree/main/plugins/rust-analyzer-lsp) | `rustup component add rust-analyzer` |
+
+A plugin only tells Claude Code how to start the server. Install the binary first and make sure it's on the `PATH` of the shell you start `claude` from (for `go install`, that's `$HOME/go/bin`). Then enable the plugins for your languages:
+
+```json
+{
+  "enabledPlugins": {
+    "gopls-lsp@claude-plugins-official": true,
+    "pyright-lsp@claude-plugins-official": true,
+    "php-lsp@claude-plugins-official": true,
+    "typescript-lsp@claude-plugins-official": true,
+    "rust-analyzer-lsp@claude-plugins-official": true
+  }
+}
+```
+
+To check that a server works, ask Claude to introduce a type error in a file of that language: `Found N new diagnostic issues` should appear under the edit. If it doesn't, the Errors tab of `/plugin` shows `Executable not found in $PATH` when the binary is missing.
+
+Watch out for:
+
+- **Terminal only**: cloud sessions don't start language servers.
+- **Memory**: a server uses more memory while it indexes the project.
+- **Noise**: diagnostics enter the context. Existing warnings, unresolved imports in monorepos, or framework conventions the server doesn't understand add noise; disable a plugin that distracts more than it helps.
+- **Intelephense**: some features need its paid licence; diagnostics and go-to-definition work without one.
+
 ## Avoid alongside this plugin
 
 - `code-simplifier` and `pr-review-toolkit`: they ship the originals of this plugin's adapted agents, so each agent would exist twice, the original still set to run after every change.
