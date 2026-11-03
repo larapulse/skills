@@ -88,6 +88,18 @@ Or from a session: `/plugin marketplace add larapulse/skills`, then `/plugin ins
 
 Cloud sessions ignore plugin settings from devices and repositories. An organization Owner adds the same JSON in claude.ai > Organization settings > Claude Code > Managed settings. Not yet tested.
 
+### Any agent, skills only (skills CLI)
+
+The [`skills`](https://github.com/vercel-labs/skills) CLI installs this repo's skills and commands into Claude Code, Codex, OpenCode, Cursor and many other agents:
+
+```bash
+npx skills add larapulse/skills -g
+```
+
+It asks which skills and agents to use; `--skill <name>` and `-a <agent>` (for example `-a codex`) pick them up front, and `--list` shows what's available. Update with `npx skills update`.
+
+It installs skills only. The global instructions, the secrets guard and the agents need the plugin, so on Claude Code use the plugin instead; installing both would load every skill twice.
+
 ### Codex CLI
 
 Codex reads Claude Code plugin manifests, so the global instructions load through the same hook. Not yet tested.
@@ -114,17 +126,13 @@ OpenCode doesn't read Claude Code plugins. Point its instructions at the file in
 }
 ```
 
-For the commands, link the skill folders where OpenCode looks for skills (a local clone is needed):
+For the commands, use the skills CLI:
 
 ```bash
-git clone https://github.com/larapulse/skills ~/.larapulse-skills
+npx skills add larapulse/skills -g -a opencode
 ```
 
-```bash
-mkdir -p ~/.config/opencode/skills && ln -s ~/.larapulse-skills/skills/* ~/.config/opencode/skills/
-```
-
-Update with `git -C ~/.larapulse-skills pull`. Agents are not available: OpenCode uses a different agent format.
+Agents are not available: OpenCode uses a different agent format.
 
 ### Other tools
 
