@@ -1,6 +1,6 @@
 # larapulse/skills
 
-Personal agent plugin: global coding instructions, a secrets guard, code review agents and review workflow skills, shared across devices and accounts. Built to sit next to [superpowers](https://github.com/obra/superpowers), not to replace it.
+Personal agent plugin: global coding instructions, a secrets guard, code review agents, review workflow skills and a UI design canvas, shared across devices and accounts. Built to sit next to [superpowers](https://github.com/obra/superpowers), not to replace it.
 
 ## Contents
 
@@ -43,10 +43,11 @@ Skills load on their own when the task fits; each costs a one-line description i
 | [`/larapulse:review-handoff <brief or path>`](skills/review-handoff/SKILL.md) | Reviews the changes a brief describes in every repository it lists and gives a merge verdict. Fixes minor non-logic issues itself, lists logic findings for the developer. |
 | [`/larapulse:wait-what`](skills/wait-what/SKILL.md) | Re-pitches the last message with the missing context, in full sentences of plain English, when a terse report didn't land. |
 | [`/larapulse:ui-review [files]`](skills/ui-review/SKILL.md) | Checks UI code against about 100 web interface rules (accessibility, focus, forms, motion, layout, i18n, copy) and lists findings as `file:line`. Without arguments, reviews the branch's changed UI files. |
+| [`/larapulse:design-canvas [what to design]`](skills/design-canvas/SKILL.md) | Designs or redesigns UI with you on a live browser canvas: mockups you choose between, comment on, edit, draw on and tweak, round by round. Ends with a spec, a standalone mockup and an implementation handoff in `docs/design/`. |
 
 A review round: run `/larapulse:handoff` where the code was written, paste the brief into the reviewer (another agent, such as Codex, on any machine) with `/larapulse:review-handoff`, and forward its report back. After fixing, `/larapulse:handoff` again writes the follow-up for the next round.
 
-The short forms `/handoff`, `/review-handoff`, `/wait-what` and `/ui-review` work too while no other command uses those names. Commands only run when typed, so their descriptions cost no context.
+The short forms `/handoff`, `/review-handoff`, `/wait-what`, `/ui-review` and `/design-canvas` work too while no other command uses those names. Commands only run when typed, so their descriptions cost no context.
 
 ## Side effects
 
@@ -56,6 +57,7 @@ The short forms `/handoff`, `/review-handoff`, `/wait-what` and `/ui-review` wor
 - **Agents**: each run is a subagent with its own context and token cost. `code-simplifier` edits files and runs the project's tests; `silent-failure-hunter` only reads.
 - **Handoff files**: briefs and reports longer than about 40 lines go to `.handoff/` in the repository root, which is added to `.git/info/exclude` so it is never committed. Shorter ones are printed in chat.
 - **Review fixes**: `/larapulse:review-handoff` fixes minor non-logic issues (typos, stale comments) directly in the reviewer's checkout.
+- **Design canvas**: needs Node. `/larapulse:design-canvas` runs a local server on localhost, protected by a random key, and waits up to 30 minutes per round for you to send. Scratch screens go to `.design-canvas/`, which it adds to `.git/info/exclude`; the deliverable goes to `docs/design/`.
 - **Secrets guard**: about 30 ms per Read, Grep and Bash call, and no tokens unless it blocks. It needs `python3`: without it, every Read, Grep and Bash call is blocked until it is installed. `cp .env.example .env` is blocked as well; run it yourself.
 - **Updates**: with auto-update on, every push to `master` reaches every device. There are no version bumps.
 
