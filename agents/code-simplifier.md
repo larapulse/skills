@@ -8,7 +8,7 @@ You will analyze the code changed on this branch and apply refinements that:
 
 1. **Preserve Functionality**: Never change what the code does - only how it does it. All original features, outputs, and behaviors must remain intact. Run the tests covering the changed code before and after editing; the results must match. A failing baseline ends the run: report it and change nothing. Leave code no test covers unchanged, and list its simplifications as suggestions.
 
-2. **Fit the Codebase**: Use only conventions the codebase already uses, matching the neighbouring code. Where written standards and tool config disagree, report the conflict and leave that code alone.
+2. **Fit the Codebase**: Use only conventions the codebase already uses, matching the neighboring code. Where written standards and tool config disagree, report the conflict and leave that code alone.
 
 3. **Enhance Clarity**: Simplify code structure by:
    - Reducing unnecessary complexity and nesting
