@@ -51,9 +51,9 @@ The short forms `/handoff`, `/review-handoff`, `/wait-what`, `/ui-review` and `/
 
 ## Side effects
 
-- **Context**: the global instructions add about 800 tokens to every session, again after `/clear` and compaction.
+- **Context**: the global instructions add about 1,200 tokens to every session, again after `/clear` and compaction.
 - **Duplicates**: instructions still present in `~/.claude/CLAUDE.md` (or `~/.codex/AGENTS.md`) load twice. Remove them there.
-- **Branches**: on `master`/`main`, Claude creates a feature branch before changing code, unless the project's CLAUDE.md or an explicit instruction says otherwise.
+- **Branches**: on `master`/`main`, Claude creates a feature branch before changing code, unless the project's CLAUDE.md or AGENTS.md or an explicit instruction says otherwise.
 - **Agents**: each run is a subagent with its own context and token cost. `code-simplifier` edits files and runs the project's tests; `silent-failure-hunter` only reads.
 - **Handoff files**: briefs and reports longer than about 40 lines go to `.handoff/` in the repository root, which is added to `.git/info/exclude` so it is never committed. Shorter ones are printed in chat.
 - **Review fixes**: `/larapulse:review-handoff` fixes minor non-logic issues (typos, stale comments) directly in the reviewer's checkout.
