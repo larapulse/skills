@@ -663,7 +663,7 @@
   // Human-readable pointer to the clicked element, so the agent knows which
   // part of which variant the comment is about.
   function describeTarget(el) {
-    const labelled = el.closest('[data-label]');
+    const labeled = el.closest('[data-label]');
     const art = el.closest('[data-choice]');
     let text = (el.textContent || '').trim().replace(/\s+/g, ' ');
     if (text.length > 80) text = text.slice(0, 77) + '...';
@@ -678,7 +678,7 @@
     }
     return {
       artboard: art ? art.dataset.choice : null,
-      label: labelled ? labelled.dataset.label : null,
+      label: labeled ? labeled.dataset.label : null,
       path: parts.join(' > ') || el.tagName.toLowerCase(),
       text: text || null
     };

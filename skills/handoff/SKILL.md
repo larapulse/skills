@@ -1,6 +1,6 @@
 ---
 name: handoff
-description: Summarises the current work into a brief for another agent, by default an independent reviewer.
+description: Summarizes the current work into a brief for another agent, by default an independent reviewer.
 argument-hint: "[purpose: review (default), or continue elsewhere]"
 disable-model-invocation: true
 ---

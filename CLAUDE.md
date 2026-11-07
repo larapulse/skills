@@ -19,5 +19,5 @@ The repo root is both the plugin (`larapulse`) and its marketplace (`larapulse-s
 ## Conventions
 
 - Short descriptions, no `model` pin, nothing Claude does anyway.
-- Adapted third-party files carry a frontmatter comment `# Adapted from <repo> (<licence>), modified. See THIRD_PARTY_NOTICES.md.`, a row in `THIRD_PARTY_NOTICES.md`, and the licence text in `LICENSES/`.
+- Adapted third-party files carry a frontmatter comment `# Adapted from <repo> (<license>), modified. See THIRD_PARTY_NOTICES.md.`, a row in `THIRD_PARTY_NOTICES.md`, and the license text in `LICENSES/`.
 - Run `claude plugin validate .` after touching `.claude-plugin/` or `hooks/`.

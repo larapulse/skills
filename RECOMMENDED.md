@@ -100,7 +100,7 @@ Watch out for:
 - **Terminal only**: cloud sessions don't start language servers.
 - **Memory**: a server uses more memory while it indexes the project.
 - **Noise**: diagnostics enter the context. Existing warnings, unresolved imports in monorepos, or framework conventions the server doesn't understand add noise; disable a plugin that distracts more than it helps.
-- **Intelephense**: some features need its paid licence; diagnostics and go-to-definition work without one.
+- **Intelephense**: some features need its paid license; diagnostics and go-to-definition work without one.
 
 ## Avoid alongside this plugin
 

@@ -80,7 +80,7 @@ The first screen of every session is the goal screen. The goal sets the fidelity
 |---|---|---|---|
 | `prototype`: realistic click paths | styled to high | flow, layout, typography, color, states | Clickable high-fidelity prototype; handoff adds a click-path map |
 | `look`: rough look | wireframe to styled | direction, layout, typography, color | Styled screens, no interaction-state detail |
-| `wireframe`: wireframes only | wireframe throughout | direction, layout, content hierarchy | Grey-box wireframes; spec covers structure only |
+| `wireframe`: wireframes only | wireframe throughout | direction, layout, content hierarchy | Gray-box wireframes; spec covers structure only |
 
 Put the chosen goal in the goal block's why line. A later note can change the goal; adjust the remaining steps to match.
 
@@ -113,7 +113,7 @@ On approval, or a `handoff` export, write `docs/design/YYYY-MM-DD-<topic>/` with
 - `handoff.md`, for the implementing session:
   1. the component tree, each node mapped to an existing component path or marked `NEW`
   2. tokens used, by name
-  3. layout hierarchy and responsive behaviour per viewport
+  3. layout hierarchy and responsive behavior per viewport
   4. interaction states: hover, focus, empty, loading, error
   5. assets
   6. rejected alternatives and why

@@ -1,7 +1,7 @@
 ---
 # Adapted from anthropics/claude-plugins-official (Apache-2.0), modified. See THIRD_PARTY_NOTICES.md.
 name: code-simplifier
-description: Simplifies the branch's changed code without changing behaviour. Use right before code review or a PR, or when asked to simplify; not after individual tasks.
+description: Simplifies the branch's changed code without changing behavior. Use right before code review or a PR, or when asked to simplify; not after individual tasks.
 ---
 
 You will analyze the code changed on this branch and apply refinements that:

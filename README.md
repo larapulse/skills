@@ -22,7 +22,7 @@ Claude gets the reason and asks you instead. It is a guardrail, not a sandbox: i
 
 | Agent | Runs | Does | Edits code |
 |---|---|---|---|
-| [`larapulse:code-simplifier`](agents/code-simplifier.md) | Before code review or a merge request, or when asked | Simplifies the branch's changes without changing behaviour; runs the tests before and after | Yes |
+| [`larapulse:code-simplifier`](agents/code-simplifier.md) | Before code review or a merge request, or when asked | Simplifies the branch's changes without changing behavior; runs the tests before and after | Yes |
 | [`larapulse:silent-failure-hunter`](agents/silent-failure-hunter.md) | During code review, or when asked | Reports swallowed errors, unjustified fallbacks and unhelpful error messages | No |
 
 Claude dispatches them on its own at those points, or ask by name ("run code-simplifier").
@@ -146,4 +146,4 @@ Plugins and skills that pair well with this one, what each costs, and what to av
 
 ## Maintaining
 
-Conventions for changing this repo are in [`CLAUDE.md`](CLAUDE.md). Adapted third-party files and their licences: [`THIRD_PARTY_NOTICES.md`](THIRD_PARTY_NOTICES.md).
+Conventions for changing this repo are in [`CLAUDE.md`](CLAUDE.md). Adapted third-party files and their licenses: [`THIRD_PARTY_NOTICES.md`](THIRD_PARTY_NOTICES.md).

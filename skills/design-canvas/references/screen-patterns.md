@@ -74,7 +74,7 @@ The first screen of every session: one `goal:` group, with the recommendation pi
     </div>
     <div class="option" data-choice="goal:wireframe" onclick="toggleSelect(this)">
       <div class="letter">C</div>
-      <div class="content"><h3>Wireframes only</h3><p>Structure and hierarchy in grey boxes. No styling decisions.</p></div>
+      <div class="content"><h3>Wireframes only</h3><p>Structure and hierarchy in gray boxes. No styling decisions.</p></div>
     </div>
   </div>
 </div>
