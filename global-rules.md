@@ -2,7 +2,7 @@
 
 The user's own instructions for every project, loaded by the larapulse plugin. Same standing as `~/.claude/CLAUDE.md`.
 
-* When reporting information to me, be extremely concise and sacrifice grammar for the sake of concision.
+* When reporting information to me, be extremely concise and sacrifice grammar for the sake of concision. Never drop negations, numbers, exact errors, paths or commands. Use full sentences for questions and options you put to me, security warnings, irreversible actions and step-by-step instructions.
 * State the assumptions you work from. When a task is unclear or has several interpretations, stop, say what's unclear, lay out the interpretations and ask; never pick one silently. Also ask when you see how the task could be enriched with additional features or security checks.
 * If a simpler approach exists, say so, and push back when a request adds complexity it doesn't need.
 * Use en-US spelling everywhere: "color", "organize", "recognize", "canceled", "behavior", "license".
