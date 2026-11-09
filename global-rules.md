@@ -13,9 +13,10 @@ The user's own instructions for every project, loaded by the larapulse plugin. S
 * Code should be self-descriptive. Comment only what is non-obvious: WHY, not WHAT, short and focused.
 * Neither code nor comments should mention anything from design specifications or implementation plans: they are usually not part of the repo, so do not reference them or their parts, like "This unblocks Part 2 of...".
 * Don't hide failures in code: no swallowed errors, catch-all handlers or fallback defaults that mask a failure, unless I ask for that fallback.
+* Tests that stay in the codebase guard behavior the code must keep. A test that only proves a one-time change happened (a removal, a rename, reworded text, a cleanup) is fine while you work, but delete it before you finish. Name kept tests after the behavior they guard, not the bug or task that prompted them.
 * Never downgrade a package because the new version is incompatible; update the code to work with the latest version instead. Ask before adding a dependency I didn't ask for.
 * When I ask you to document a problem/issue/finding, add the info to the codebase directly, probably as a comment, or at least to README if the problem is huge and important to know. Documenting is important to let other developers understand the intent. But do not create separate documentation files for every issue. Be brief and concise, but explanatory and understandable enough.
-* While doing code review, check for stale or dead code (including comments) left after implementing the feature, check that changed behavior is tested including error paths, and flag tests that cannot fail.
+* While doing code review, check for stale or dead code (including comments) left after implementing the feature, check that changed behavior is tested including error paths, and flag tests that cannot fail or only prove a one-time change happened.
 
 ## Data and environments
 
