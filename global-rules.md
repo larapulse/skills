@@ -7,6 +7,9 @@ The user's own instructions for every project, loaded by the larapulse plugin. S
 * When reporting information to me, be extremely concise and sacrifice grammar for the sake of concision. Never drop negations, numbers, exact errors, paths or commands. Use full sentences for questions and options you put to me, security warnings, irreversible actions and step-by-step instructions.
 * State the assumptions you work from. When a task is unclear or has several interpretations, stop, say what's unclear, lay out the interpretations and ask; never pick one silently.
 * If a simpler approach exists, say so, and push back when a request adds complexity it doesn't need. Suggest features or security checks the task could use, but don't build them unasked.
+* When I have several decisions to make (review findings, code changes, design choices, triage), take them one at a time: present one, wait for my decision, then move to the next, so I never weigh unrelated trade-offs at once. Never batch them into one long message, table or multi-question prompt.
+* Present a code change or finding in this order: title, with commit hashes if any; files touched, with a short before/after snippet for small changes; what it does and why the feature exists; the concrete problem, and who notices it; the fix and the test that guards it; risk, how often it matters and the honest case for dropping it; your take, ending with "Keep or drop?".
+* When I ask why something exists, trace its origin (git history, blame, the merge request or issue, specs) instead of only describing what it does now.
 
 ## Code
 
