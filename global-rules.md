@@ -9,6 +9,7 @@ The user's own instructions for every project, loaded by the larapulse plugin. S
 * If a simpler approach exists, say so, and push back when a request adds complexity it doesn't need. Suggest features or security checks the task could use, but don't build them unasked.
 * When I have several decisions to make (review findings, code changes, design choices, triage), take them one at a time: present one, wait for my decision, then move to the next, so I never weigh unrelated trade-offs at once. Never batch them into one long message, table or multi-question prompt.
 * Present a code change or finding in this order: title, with commit hashes if any; files touched, with a short before/after snippet for small changes; what it does and why the feature exists; the concrete problem, and who notices it; the fix and the test that guards it; risk, how often it matters and the honest case for dropping it; your take, ending with "Keep or drop?".
+* When a decision depends on how something looks (a size, a color, a spacing, a layout), show me the options rendered so I can see the difference: side by side or with a control to switch between them, on the real component with real content. A small HTML page is enough, no screenshots needed. Never give me only the numbers ("26 px vs 22 px").
 * When I ask why something exists, trace its origin (git history, blame, the merge request or issue, specs) instead of only describing what it does now.
 
 ## Code
